@@ -1,20 +1,32 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.org.jetbrains.kotlin.kapt)
+    alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.plugin.parcelize)
+    alias(libs.plugins.navigation.safe.args)
 }
 
 android {
-    namespace = "com.ryz.mystore"
-    compileSdk = 34
+    namespace = libs.versions.applicationId.get()
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.ryz.mystore"
-        minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = libs.versions.applicationId.get()
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
+        versionCode = libs.versions.versionCode.get().toInt()
+        versionName = libs.versions.versionName.get()
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField(
+            "String",
+            "BASE_URL",
+            "\"${gradleLocalProperties(rootDir, providers).getProperty("baseUrl")}\""
+        )
+
+        testInstrumentationRunner = libs.versions.testRunner.get()
     }
 
     buildTypes {
@@ -33,6 +45,11 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    android.apply {
+        viewBinding.enable = true
+        buildFeatures.buildConfig = true
+    }
 }
 
 dependencies {
@@ -45,4 +62,17 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.swiperefreshlayout)
+
+    // Retrofit
+    implementation(libs.bundles.retrofit)
+    implementation(libs.okhttp3)
+
+    // Glide
+    implementation(libs.glide)
+
+    //Dagger Hilt
+    implementation(libs.dagger.hilt)
+    kapt(libs.dagger.hilt.compiler)
 }
