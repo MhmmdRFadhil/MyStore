@@ -9,7 +9,7 @@ import com.ryz.mystore.databinding.ItemProductBinding
 import com.ryz.mystore.utils.BaseAdapter
 import com.ryz.mystore.utils.loadImageUrl
 
-class ProductAdapter(private val onClick: (ProductResponse?) -> Unit) :
+class ProductAdapter(private val onClick: (Int?) -> Unit) :
     BaseAdapter<ProductResponse, ItemProductBinding>(DIFF_CALLBACK) {
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ItemProductBinding
         get() = ItemProductBinding::inflate
@@ -23,7 +23,7 @@ class ProductAdapter(private val onClick: (ProductResponse?) -> Unit) :
             tvPrice.text = root.context.getString(R.string.format_price, item.price.toString())
 
             root.setOnClickListener {
-                onClick.invoke(item)
+                onClick.invoke(item.id)
             }
         }
     }

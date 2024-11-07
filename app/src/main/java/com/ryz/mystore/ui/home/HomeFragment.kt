@@ -62,11 +62,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
 
         with(binding.rvProduct) {
-            productAdapter = ProductAdapter { product ->
-                product?.let {
+            productAdapter = ProductAdapter { productId ->
+                productId?.let { id ->
                     findNavController().navigate(
                         HomeFragmentDirections.actionHomeFragmentToHomeDetailFragment(
-                            it
+                            id
                         )
                     )
                     currentCategory = null

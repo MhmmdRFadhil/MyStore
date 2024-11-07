@@ -18,9 +18,9 @@
         android:id="@+id/homeDetailFragment"
         android:name="com.ryz.mystore.ui.home.HomeDetailFragment"
         android:label="fragment_home_detail"
-        tools:layout="@layout/fragment_home_detail" >
+        tools:layout="@layout/fragment_home_detail">
         <argument
-            android:name="productData"
-            app:argType="com.ryz.mystore.data.model.response.ProductResponse" />
+            android:name="productId"
+            app:argType="integer" />
     </fragment>
 </navigation>

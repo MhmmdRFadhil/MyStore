@@ -40,7 +40,6 @@ abstract class BaseFragment<VB : ViewBinding>(
         initListener()
         initAdapter()
         initCollector()
-        setOnBackPressedDispatcher()
     }
 
     protected open fun initUI() {}
@@ -58,22 +57,6 @@ abstract class BaseFragment<VB : ViewBinding>(
     * Handle ui state
      */
     protected open suspend fun collectUiState(coroutineScope: CoroutineScope) {}
-
-    /*
-    * Handle back press event
-     */
-    protected fun setOnBackPressedDispatcher(onNavigation: (() -> Unit)? = null) {
-        val onBackPressedCallback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                // Handle the back button event
-                onNavigation?.invoke() ?: findNavController().popBackStack()
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            onBackPressedCallback
-        )
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

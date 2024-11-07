@@ -1,5 +1,6 @@
 package com.ryz.mystore.ui.home
 
+import android.content.Intent
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -22,9 +23,21 @@ class HomeDetailFragment :
     private val viewModel by viewModels<HomeViewModel>()
 
     override fun initUI() {
-        initToolbar(getString(R.string.details), binding.toolbarLayout.toolbar)
+        initToolbar(
+            getString(R.string.details),
+            binding.toolbarLayout.toolbar,
+            /*isMenu = true,
+            onMenu = {
+                val sendIntent = Intent(Intent.ACTION_SEND).apply {
+                    val deepLinkUrl = "https://www.mystore.com/detail/${args.productId}"
+                    putExtra(Intent.EXTRA_TEXT, deepLinkUrl)
+                    type = "text/plain"
+                }
+                val shareIntent = Intent.createChooser(sendIntent, getString(R.string.share))
+                startActivity(shareIntent)
+            }*/)
 
-        args.productData.id?.let { id -> viewModel.getProductDetail(id) }
+        viewModel.getProductDetail(args.productId)
     }
 
     override suspend fun collectUiState(coroutineScope: CoroutineScope) {
@@ -32,10 +45,10 @@ class HomeDetailFragment :
             viewModel.uiState.collectUiState(
                 fragment = this@HomeDetailFragment,
                 progressBar = binding.progressBar,
-                onLoading =  { isLoading ->
+                onLoading = { isLoading ->
                     binding.clContent.isVisible = !isLoading
                 },
-                onSuccess =  { state ->
+                onSuccess = { state ->
                     state.productDetail?.let { data ->
                         populateUi(data)
                     }

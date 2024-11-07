@@ -30,7 +30,6 @@
             android:layout_marginBottom="@dimen/small_margin"
             android:fillViewport="true"
             android:scrollbars="none"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -75,22 +74,34 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cl_product"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_category"
                     tools:text="@tools:sample/lorem" />
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    style="@style/CustomFontTextViewSemiBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/extra_small_margin"
+                    android:text="@string/format_price"
+                    android:textColor="@color/md_theme_primary"
+                    android:textSize="@dimen/text_xlarge"
+                    app:layout_constraintStart_toStartOf="@+id/tv_product_name"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_product_name" />
 
                 <TextView
                     android:id="@+id/tv_category"
                     style="@style/CustomFontTextViewMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/mid_small_margin"
+                    android:layout_marginTop="@dimen/regular_margin"
                     android:background="@drawable/bg_round_5_primary_container"
                     android:paddingHorizontal="@dimen/small_margin"
                     android:paddingVertical="@dimen/extra_small_margin"
                     android:textColor="@color/md_theme_secondary"
                     android:textSize="@dimen/text_mid_small"
                     app:layout_constraintStart_toStartOf="@+id/tv_product_name"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_product_name"
+                    app:layout_constraintTop_toBottomOf="@+id/cl_product"
                     tools:text="@tools:sample/lorem" />
 
                 <ImageView
@@ -130,16 +141,6 @@
                     app:layout_constraintStart_toEndOf="@+id/tv_rating"
                     app:layout_constraintTop_toTopOf="@+id/tv_rating" />
 
-                <TextView
-                    android:id="@+id/tv_description_label"
-                    style="@style/CustomFontTextViewSemiBold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/small_margin"
-                    android:layout_marginTop="@dimen/large_margin"
-                    android:text="@string/description_label"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/iv_star" />
 
                 <TextView
                     android:id="@+id/tv_description"
@@ -147,50 +148,16 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/small_margin"
-                    android:layout_marginTop="@dimen/small_margin"
+                    android:layout_marginTop="@dimen/regular_margin"
                     android:textColor="@color/md_theme_secondary"
                     android:textSize="@dimen/text_mid_small"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_description_label"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_price"
                     tools:text="@tools:sample/lorem/random" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:elevation="4dp"
-            android:paddingHorizontal="@dimen/regular_margin"
-            android:paddingVertical="@dimen/mid_small_margin"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <TextView
-                android:id="@+id/tv_price_label"
-                style="@style/CustomFontTextViewSemiBold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/price"
-                android:textColor="@color/md_theme_secondary"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_price"
-                style="@style/CustomFontTextViewSemiBold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/format_price"
-                android:textColor="@color/md_theme_primary"
-                android:textSize="@dimen/text_heading_4"
-                app:layout_constraintStart_toStartOf="@+id/tv_price_label"
-                app:layout_constraintTop_toBottomOf="@+id/tv_price_label" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ProgressBar

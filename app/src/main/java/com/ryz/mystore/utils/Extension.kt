@@ -76,6 +76,8 @@ fun ImageView.loadImageUrl(
 fun Fragment.initToolbar(
     title: String,
     toolbar: MaterialToolbar,
+    isMenu: Boolean = false,
+    onMenu: (() -> Unit)? = null,
     onNavigationUp: (() -> Unit)? = null
 ) {
     val toolbarColor = requireContext().getColor(R.color.black)
@@ -89,6 +91,19 @@ fun Fragment.initToolbar(
         setTitleTextColor(toolbarColor)
         setNavigationIconTint(toolbarColor)
         setBackgroundColor(toolbarBackground)
+
+        if (isMenu) inflateMenu(R.menu.toolbar_menu)
+
+        setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.action_share -> {
+                    onMenu?.invoke()
+                    true
+                }
+
+                else -> false
+            }
+        }
     }
 }
 
