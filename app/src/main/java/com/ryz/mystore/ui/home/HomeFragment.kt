@@ -2,7 +2,6 @@ package com.ryz.mystore.ui.home
 
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ryz.mystore.R
 import com.ryz.mystore.databinding.FragmentHomeBinding
