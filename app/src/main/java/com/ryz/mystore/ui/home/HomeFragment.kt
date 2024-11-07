@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ryz.mystore.R
 import com.ryz.mystore.databinding.FragmentHomeBinding
+import com.ryz.mystore.ui.profile.ProfileFragment
 import com.ryz.mystore.utils.BaseFragment
 import com.ryz.mystore.utils.ImageType
 import com.ryz.mystore.utils.collectUiState
@@ -41,6 +42,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 viewModel.getAllProduct()
             }
             swipeLayout.isRefreshing = false
+        }
+
+        aboutPage.setOnClickListener {
+            ProfileFragment().show(childFragmentManager, TAG)
         }
     }
 
