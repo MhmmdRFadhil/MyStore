@@ -72,6 +72,9 @@ dependencies {
     // Glide
     implementation(libs.glide)
 
+    // Splashscreen
+    implementation(libs.androidx.core.splashscreen)
+
     //Dagger Hilt
     implementation(libs.dagger.hilt)
     kapt(libs.dagger.hilt.compiler)

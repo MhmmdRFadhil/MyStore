@@ -26,7 +26,7 @@ class HomeDetailFragment :
         initToolbar(
             getString(R.string.details),
             binding.toolbarLayout.toolbar,
-            /*isMenu = true,
+            isMenu = true,
             onMenu = {
                 val sendIntent = Intent(Intent.ACTION_SEND).apply {
                     val deepLinkUrl = "https://www.mystore.com/detail/${args.productId}"
@@ -35,7 +35,7 @@ class HomeDetailFragment :
                 }
                 val shareIntent = Intent.createChooser(sendIntent, getString(R.string.share))
                 startActivity(shareIntent)
-            }*/)
+            })
 
         viewModel.getProductDetail(args.productId)
     }
